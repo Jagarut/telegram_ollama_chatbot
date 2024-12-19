@@ -1,0 +1,4 @@
+ollama
+requests
+telebot
+python-dotenv
