@@ -115,8 +115,15 @@ class OllamaTelegramBot:
         def handle_message(message):
             # Get user information
             user_id = message.from_user.id
-            username = message.from_user.username or "Anonymous"
-            
+        
+            # Attempt to get username, then first name, then default to "Anonymous"
+            if message.from_user.username:
+                username = message.from_user.username
+            elif message.from_user.first_name:
+                username = message.from_user.first_name
+            else:
+                username = "Anonymous"
+        
             # Generate response
             response = self.get_ollama_response(message.text)
             
